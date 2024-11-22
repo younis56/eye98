@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عوينات سامراء الطبية</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>عوينات سامراء الطبية</h1>
+    <h2><i class="fas fa-eye"></i> تسجيل بيانات مرضى العيون</h2>
+    <form id="eye-form">
+      <label for="name">اسم المريض:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">رقم الهاتف:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+
+      <label for="age">العمر:</label>
+      <input type="number" id="age" name="age" min="0" required>
+
+      <label for="gender">الجنس:</label>
+      <select id="gender" name="gender">
+        <option value="male">ذكر</option>
+        <option value="female">أنثى</option>
+      </select>
+
+      <label for="date">التاريخ:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="next-visit">تاريخ الزيارة المقبلة:</label>
+      <input type="date" id="next-visit" name="next-visit">
+      <div>
+        <button type="button" onclick="setNextVisit(30)">الزيارة بعد شهر</button>
+        <button type="button" onclick="setNextVisit(90)">الزيارة بعد 3 أشهر</button>
+        <button type="button" onclick="setNextVisit(180)">الزيارة بعد 6 أشهر</button>
+      </div>
+
+      <h3><i class="fas fa-eye"></i> العين اليمنى</h3>
+      <label for="right-spherical">القيم الكروية (Spherical):</label>
+      <input type="number" id="right-spherical" name="right-spherical" step="0.25" min="-20" max="20">
+
+      <label for="right-astigmatism">الاستجماتيزم (Astigmatism):</label>
+      <input type="number" id="right-astigmatism" name="right-astigmatism" step="0.25" min="-20" max="20">
+
+      <label for="right-axis">المحور (Axis):</label>
+      <input type="number" id="right-axis" name="right-axis" min="0" max="180">
+
+      <h3><i class="fas fa-eye"></i> العين اليسرى</h3>
+      <label for="left-spherical">القيم الكروية (Spherical):</label>
+      <input type="number" id="left-spherical" name="left-spherical" step="0.25" min="-20" max="20">
+
+      <label for="left-astigmatism">الاستجماتيزم (Astigmatism):</label>
+      <input type="number" id="left-astigmatism" name="left-astigmatism" step="0.25" min="-20" max="20">
+
+      <label for="left-axis">المحور (Axis):</label>
+      <input type="number" id="left-axis" name="left-axis" min="0" max="180">
+
+      <label for="notes">ملاحظات إضافية:</label>
+      <textarea id="notes" name="notes"></textarea>
+
+      <button type="button" onclick="saveData()">حفظ البيانات</button>
+    </form>
+
+    <div class="data-tools">
+      <button onclick="exportToExcel()">نسخ إلى Excel</button>
+      <button onclick="printData()">طباعة البيانات</button>
+      <button onclick="shareData()">مشاركة البيانات</button>
+    </div>
+
+    <h2><i class="fas fa-database"></i> البيانات المسجلة:</h2>
+    <input type="text" id="search" placeholder="بحث بالاسم أو التاريخ..." oninput="searchData()">
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>رقم</th>
+          <th>اسم المريض</th>
+          <th>الهاتف</th>
+          <th>العمر</th>
+          <th>الجنس</th>
+          <th>التاريخ</th>
+          <th>العين اليمنى</th>
+          <th>العين اليسرى</th>
+          <th>تاريخ الزيارة المقبلة</th>
+          <th>الأيام المتبقية</th>
+          <th>ملاحظات</th>
+          <th>إجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- البيانات ستُضاف هنا -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
